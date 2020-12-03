@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+</head> 
+<body>
+    
+<script>
+
+let dogs = {
+        0: {
+            name: 'Бобик',
+            weight: 9,
+            bark: function () {
+                console.log(this.weight > 10 ? this.name + ': гав-гав' : this.name + ': тяв-тяв')
+            }
+        },
+        1: {
+            name: 'Шарик',
+            weight: 12,
+            bark: function () {
+                console.log(this.weight > 10 ? this.name + ': гав-гав' : this.name + ': тяв-тяв')
+            }
+        }
+    }
+    
+//for (let dog in dogs) {
+//    dogs[dog].bark()
+//}
+
+function createDog(name, weight) {
+    let obj = {}
+    
+    obj.name = name
+    obj.weight = weight
+    
+    obj.bark = function () {
+        console.log(this.weight > 10 ? this.name + ': гав-гав' : this.name + ': тяв-тяв')
+    }
+    
+    return obj
+}
+
+function Dog(name, weight) {
+    this.name = name
+    this.weight = weight
+}
+
+function ShowDog(name, weight, owner) {
+    Dog.call(this, name, weight)
+    this.owner = owner
+}
+
+Dog.prototype.bark = function () {
+    return this.weight > 10 ? this.name + ': гав-гав' : this.name + ': тяв-тяв'
+}
+
+ShowDog.prototype = new Dog()
+
+ShowDog.prototype.dance = function () {
+    return this.bark() + ', а так же танцует'
+}
+
+let dog = new Dog('Тузик', 20, 2)
+let dog2 = new ShowDog('Пейпер', 7)
+
+console.log(dog2.dance())
+
+
+
+function test(text) {
+    console.log('Начало ' + text)
+    console.log(this)
+    console.log('Конец')
+}
+
+let t = {
+    name: 'bob',
+    age: 22
+}
+
+test.call(t, 'hello')
+
+
+</script>
+    
+</body>
+</html>

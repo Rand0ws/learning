@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+    <style>
+        .table {
+            border: 1px dotted red;
+            border-spacing: 10px;
+        }
+        tr {
+            border: 1px solid green;
+        }
+        td {
+            border: 1px dashed blue;
+        }
+    </style>
+</head> 
+<body>
+    
+    <div class="one" style="background-color: red; height: 200px; width: 200px"></div>
+    <div class="two" style="background-color: green; height: 200px; width: 200px"></div>
+    <div class="three" style="background-color: blue; height: 200px; width: 200px"></div>
+    
+    <script>
+        let one = document.querySelector('.one'),
+            two = document.querySelector('.two'),
+            three = document.querySelector('.three')
+            
+        one.replaceWith(three)
+        two.after(one)
+        
+        one.insertAdjacentHTML('beforebegin', '<div>insertAdjacent</div>')
+        
+        let test = document.createElement('div')
+        
+        test.textContent = 'test'
+        test.classList.add('red')
+        document.body.prepend(test)
+        
+        let table = document.createElement('table'),
+            tr = document.createElement('tr'),
+            td = document.createElement('td')
+        
+        table.classList.add('table')
+        td.textContent = 'td'
+        table.prepend(tr)
+        tr.prepend(td)
+        
+        document.body.prepend(table)
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    height: 600px;
+    width: 200px;
+    background-color: blue;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    transition: 1s;
+    transform-origin: 0 0;
+}
+
+.container:hover {
+    transform: rotate(90deg) translate(400px, 0);
+}
+
+.block {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    background-color: gray;
+    transition: .5s;
+}
+
+.b-1:hover {
+    background-color: green;
+}
+
+.b-2:hover {
+    background-color: yellow;
+}
+
+.b-3:hover {
+    background-color: red;
+}

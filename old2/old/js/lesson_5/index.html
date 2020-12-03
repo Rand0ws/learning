@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+</head> 
+<body>
+    <script>
+        document.write('<table cellspacing="2" border="1" cellpadding="5">')
+        
+        for (let x = 1; x < 10; x++) {
+            document.write('<tr>')
+            
+            for (let y = 1; y < 10; y++) {
+                    document.write('<td>' + y + ' * ' + x + ' = ' + x * y + '</td>')
+            }
+            
+            document.write('</tr>')
+        }
+        
+        document.write('</table>')
+    </script>
+</body>
+</html>

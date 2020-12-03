@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #224066;
+}
+
+#app {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+#hero {
+    width: 250px;
+    height: 358px;
+    position: relative;
+}
+
+#hero .stance,
+#hero .attack {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#hero .stance {
+    background-image: url('../images/herofront_nocape.png');
+    animation-name: hero-stance;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+#hero .attack {
+    background-image: url('../images/heroright_nocape.png');
+    top: -50px;
+}
+
+#hero .laser {
+    position: absolute;
+    left: 140px;
+    top: 15px;
+    width: 175px;
+    height: 70px;
+    background-image: url('../images/beam.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    animation-name: laser;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+#hero .attack .laser:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #ffe500;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 3px #ffe500;
+}
+
+#hero.idle .stance,
+#hero.attack .attack {
+    visibility: visible;
+}
+
+#hero .shadow {
+    position: absolute;
+    left: 0;
+    bottom: -50px;
+    z-index: 1;
+    width: 250px;
+    height: 84px;
+    background-image: url('../images/heroshadow.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    animation-name: shadow;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+#hero.attack .shadow {
+    animation-name: none;
+    width: 225px;
+    left: 12.5px;
+}
+
+#hero .text {
+    position: absolute;
+    top: -32px;
+    left: 150%;
+    font-size: 55px;
+    color: #fff;
+    width: 320px;
+}
+
+@keyframes hero-stance {
+    from {
+        top: 0;
+    }
+    to {
+        top: -20px;
+    }
+}
+
+@keyframes shadow {
+    from {
+        width: 250px;
+    }
+    to {
+        width: 225px;
+        left: 12.5px;
+    }
+}
+
+@keyframes laser {
+    from {
+        width: 175px;
+    }
+    to {
+        width: 580px;
+    }
+}

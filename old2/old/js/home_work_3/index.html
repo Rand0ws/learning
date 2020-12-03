@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            display: flex;
+            height: 100vh;
+            background-color: red;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .main-block {
+            display: flex;
+            margin: auto;
+            height: 600px;
+            width: 1000px;
+            background-color: blue;
+            perspective: 1000px;
+        }
+        button {
+            position: relative;
+            margin: auto;
+            outline: none;
+            height: 0;
+            width: 0;
+            border: 100px solid #fff;
+            border-top: 100px solid rebeccapurple;
+            transition: .3s;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            border: 100px solid transparent;
+            border-top: 100px solid rebeccapurple;
+            left: -100px;
+            top: -100px;
+            transform-origin: top;
+            transform: rotateX(0deg)
+            z-index: 100;
+            transition: .3s;
+        }
+        button.active::after  {
+            transform: rotateX(180deg);
+            border-top: 100px solid red;
+            transition: .3s;
+        }
+        .active {
+            border-top: 100px solid red;
+            transition: .3s;
+        }
+    </style>
+</head> 
+<body>
+    
+    <div id="app">
+        <section class="main-block">
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
+        </section>
+    </div>
+    
+    <script>
+        let block = document.querySelector('.main-block'),
+            btn = document.querySelectorAll('.btn')
+        
+        block.addEventListener('click', function (e) {
+            for (let elem of btn) {
+                if (elem.className == 'btn active') {
+                    elem.classList.remove('active')
+                }
+            }
+            
+            if (e.target != this) {
+                e.target.classList.toggle('active')
+            }
+        })
+        
+        
+        
+        
+    </script>
+    
+</body>
+</html>

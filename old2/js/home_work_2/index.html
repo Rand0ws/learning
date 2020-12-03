@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+</head> 
+<body>
+    
+<script>
+
+let obj = {
+        'Кто я?': ['1', '2'],
+        'Кто ты?': ['3', '4'],
+        'Кто мы?': ['5', '6']
+    },
+    counter = 0
+
+for (let key in obj) {
+    let q = obj[key]
+    let ask = prompt(key)
+    
+    if (q[0] == ask || q[1] == ask) {
+        counter++
+        alert('Верно!')
+    } else {
+        alert('Неверно!')
+    }
+}
+
+alert('Общее количество правильных ответов: ' + counter)
+
+</script>
+    
+</body>
+</html>

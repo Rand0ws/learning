@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head> 
+<body>
+    
+    <canvas width="600" height="400"></canvas>
+    
+    
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+
+class Atom {
+    position
+    radius
+    color
+    
+    constructor(x, y, radius, color) {
+        this.position = new Vector(x, y)
+        this.radius = radius
+        this.color = color
+    }
+}
+
+class Color {
+    red
+    green
+    blue
+    
+    constructor(red, green, blue) {
+        this.red = red
+        this.green = green
+        this.blue = blue
+    }
+    
+    getColor() {
+        return 'rgb(' + this.red + ', ' + this.green + ', ' + this.blue + ')'
+    }
+}
+
+class Vector {
+    x
+    y
+    
+    constructor(x, y) {
+        this.x = x
+        this.y = y
+    }
+    
+    plus(vector) {
+        this.x += vector.x
+        this.y += vector.y
+    }
+    
+    minus(vector) {
+        this.x -= vector.x
+        this.y -= vector.y
+    }
+    
+    scale(factor) {
+        this.x *= factor
+        this.y *= factor
+    }
+    
+    normalize() {
+        let length = this.length()
+        
+        this.x = this.x / length
+        this.y = this.y / length
+    }
+    
+    length() {
+        return Math.sqrt(this.x ** 2 + this.y ** 2)
+    }
+    
+    clone() {
+        return new Vector(this.x, this.y)
+    }
+}
+
+let canvas = document.querySelector('canvas'),
+    ctx = canvas.getContext('2d')
+
+canvas.addEventListener('mousemove', function (e) {
+    mouse.x = e.clientX
+    mouse.y = e.clientY
+})
+
+let mouse = new Vector(0, 0)
+
+let ballList = []
+
+for (let i = 0; i < 30; i++) {
+    let x = Math.ceil(Math.random() * canvas.width),
+        y = Math.ceil(Math.random() * canvas.height),
+        radius = Math.ceil(Math.random() * 50),
+        red = Math.ceil(Math.random() * 255),
+        green = Math.ceil(Math.random() * 255),
+        blue = Math.ceil(Math.random() * 255),
+        color = new Color(red, green, blue),
+        ball = new Atom(x, y, radius, color)
+        
+    ballList.push(ball)
+}
+
+gameLoop()
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    
+    for (let ball of ballList) {
+        let m = mouse.clone()
+        
+        m.minus(ball.position)
+        m.normalize()
+        ball.position.plus(m)
+        paint(ball)
+    }
+    
+    requestAnimationFrame(gameLoop)
+}
+    
+function paint(ball) {
+    ctx.beginPath()
+    ctx.arc(ball.position.x, ball.position.y, ball.radius, 0, Math.PI * 2, true) // (x, y, radius, угол начало, угол конец, рисовать по часовой)
+    ctx.fillStyle = ball.color.getColor()
+    ctx.fill()
+}
+
+</script>
+    
+</body>
+</html>

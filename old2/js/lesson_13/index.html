@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+</head> 
+<body>
+    
+<script>
+
+class DrumKit {
+    topHat = true
+    snare = true
+    
+    playSnare() {
+        console.log("бах бах ба-бах \n")
+    }
+    
+    playTopHap() {
+        console.log("динь динь ди-динь\n");
+    }
+}
+
+let d = new DrumKit()
+
+d.playSnare()
+d.playTopHap()
+
+d.snare = false
+
+if( d.snare == true ) {
+    d.playSnare()
+}
+
+
+class Echo {
+    count = 0
+    
+    hello() {
+        console.log("привееееет\n")
+    }
+}
+
+let e1 = new Echo()
+let e2 = new Echo()
+
+let x = 0
+while (x < 4) {
+    e1.hello()
+    e1.count = e1.count + 1
+
+    if (x > 0) {
+        e2.count = e2.count + 1
+    }
+
+    if (x > 1) {
+        e2.count = e2.count + e1.count
+    }
+
+    x = x + 1
+}
+
+console.log(e2.count+"\n")
+
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- <script src="js/main.js?3"></script> -->
+</head> 
+<body>
+    <script>
+        let str = 'C8AB14Z9', // CCCCCCCCABBBBZZZZZZZZZ
+            res = '',
+            counter = 0
+        
+        for (let i = 0; i < str.length; i++) {
+            if (counter > 1) {
+                counter--
+                continue
+            }
+            
+            counter = 0
+            let count = ''
+            
+            if (str[i] != +str[i]) {
+                res += str[i]
+            }
+            
+            if (str[i] == +str[i]) {
+                for (let j = i; j < str.length; j++) {
+                    if (str[j] == +str[j]) {
+                        counter++
+                        count += str[j]
+                    } else {
+                        break
+                    }
+                }
+                
+                for (let k = 1; k < +count; k++) {
+                    res += str[i - 1]
+                }
+            }
+        }
+        
+        console.log(res)
+    </script>
+</body>
+</html>
